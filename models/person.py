@@ -1,15 +1,19 @@
 from db import db
-import sqlite3
 
 class PersonModel(db.Model):
-    """ Data model representing Person. """
-
+    
     __tablename__  = "persons"
 
     id = db.Column(db.Integer, primary_key=True)
     firstName = db.Column(db.String(80))
     lastName = db.Column(db.String(80))
     dob = db.Column(db.String(80)) # TODO change datatype
+    type = db.Column(db.String(20))
+
+    __mapper_args__ = {
+        "polymorphic_on": "type",
+        "polymorphic_identity": "person",
+    }
 
     def __init__(self, firstName, lastName, dob):
         self.firstName = firstName

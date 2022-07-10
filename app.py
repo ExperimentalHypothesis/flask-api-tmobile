@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 import os
 
 from resources.person import Person
+from resources.customer import Customer
 
 app = Flask(__name__)
 app.secret_key = "sadaddaf"
@@ -10,8 +11,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 
 api = Api(app)
-# api.add_resource(Person, "/person/<string:firstName>")
 api.add_resource(Person, "/person", "/person/<int:id>", endpoint="person")
+api.add_resource(Customer, "/customer", "/customer/<int:id>", endpoint="customer")
 
 # api.add_resource(Company, "/company")
 # api.add_resource(Customer, "/customer")
