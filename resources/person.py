@@ -1,7 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.person import PersonModel 
 
-
 class Person(Resource):
 
     parser = reqparse.RequestParser()

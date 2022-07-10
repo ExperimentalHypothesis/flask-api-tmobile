@@ -3,12 +3,16 @@ from .person import PersonModel
 # from .company import CompanyModel
 
 class CustomerModel(PersonModel):
+
+    __tablename__  = "customer"
+
     phoneNr = db.Column(db.Integer)
     email = db.Column(db.String(128))
+    customers = db.relationship("OrderModel", backref="ordered_by", lazy="dynamic")
 
-    # __mapper_args__ = {
-    #     "polymorphic_identity": "customer",
-    # }
+    __mapper_args__ = {
+        "polymorphic_identity": "customer",
+    }
 
     def __init__(self, firstName, lastName, dob, phoneNr, email):
         super().__init__(firstName, lastName, dob)

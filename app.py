@@ -4,7 +4,7 @@ import os
 
 from resources.person import Person
 from resources.customer import Customer
-from resources.company import Company
+from resources.order import Order
 
 
 app = Flask(__name__)
@@ -15,9 +15,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 api = Api(app)
 api.add_resource(Person, "/person", "/person/<int:id>", endpoint="person")
 api.add_resource(Customer, "/customer", "/customer/<int:id>", endpoint="customer")
+api.add_resource(Order, "/order", "/order/<int:id>", endpoint="order")
+
 # api.add_resource(Company, "/company", "/company/<int:id>", endpoint="company")
 # api.add_resource(Adress, "/adress", "/adress/<int:id>", endpoint="adress")
-# api.add_resource(Order, "/order", "/order/<int:id>", endpoint="order")
 # api.add_resource(Item, "/item", "/item/<int:id>", endpoint="item")
 
 
