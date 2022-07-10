@@ -3,6 +3,7 @@ from models.person import PersonModel
 
 
 class Person(Resource):
+    """ Base resource for Customer. """
 
     parser = reqparse.RequestParser()
     parser.add_argument("firstName", type=str, required=True, help="first name of person")
@@ -10,9 +11,9 @@ class Person(Resource):
     parser.add_argument("dob", type=str, required=True, help="date of birth of person")
 
     def get(self, id):
-        foundPerson = PersonModel.findById(id)
-        if foundPerson:
-            return foundPerson.json(), 200
+        found = PersonModel.findById(id)
+        if found:
+            return found.json(), 200
         return {"msg": f"person with id {id} not found"}, 404
 
     def post(self):
@@ -21,8 +22,12 @@ class Person(Resource):
         person.saveToDB()
         return {"msg": "person created successfully."}, 201
      
-    def delete(self):
-        pass
+    def delete(self, id):
+        found = PersonModel.findById(id)
+        if found:
+            found.deleteFromDB()
+            return {"msg": "person deleted succesfully."}, 204
+        return {"msg": f"person with id {id} not found"}, 404
 
     def put(self):
         pass

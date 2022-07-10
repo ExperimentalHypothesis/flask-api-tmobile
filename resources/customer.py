@@ -11,15 +11,25 @@ class Customer(Resource):
     parser.add_argument("email", type=str, required=True, help="email of person")
 
     def get(self, id):
-        foundCustomer = CustomerModel.findById(id)
-        if foundCustomer:
-            return foundCustomer.json(), 200
+        found = CustomerModel.findById(id)
+        if found:
+            return found.json(), 200
         return {"msg": f"customer with id {id} not found"}, 404
 
     def post(self):
         payload = self.parser.parse_args()
         customer = CustomerModel(**payload)
         customer.saveToDB()
-        return {"msg": "person created successfully."}, 201
+        return {"msg": "customer created successfully."}, 201
+
+    def delete(self, id):
+            found = CustomerModel.findById(id)
+            if found:
+                found.deleteFromDB()
+                return {"msg": "customer deleted succesfully."}, 204
+            return {"msg": f"customer with id {id} not found"}, 404
+
+    
+
      
     
