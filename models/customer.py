@@ -1,13 +1,14 @@
 from db import db
 from .person import PersonModel
+# from .company import CompanyModel
 
 class CustomerModel(PersonModel):
-    phoneNr = db.Column(db.String(80)) # TODO change datatype
-    email = db.Column(db.String(80))
+    phoneNr = db.Column(db.Integer)
+    email = db.Column(db.String(128))
 
-    __mapper_args__ = {
-        "polymorphic_identity": "customer",
-    }
+    # __mapper_args__ = {
+    #     "polymorphic_identity": "customer",
+    # }
 
     def __init__(self, firstName, lastName, dob, phoneNr, email):
         super().__init__(firstName, lastName, dob)

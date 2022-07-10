@@ -16,13 +16,13 @@ class Customer(Resource):
             return customer.json(), 200
         return {"msg": f"customer with id {id} not found"}, 404
 
-    def post(self):
+    def post(self): ## todo check email is unique
         payload = self.parser.parse_args()
         customer = CustomerModel(**payload)
         customer.saveToDB()
         return {"msg": "customer created successfully."}, 201
-
-    def delete(self, id):
+ 
+    def delete(self, id): ## todo based on email as it is unique
         customer = CustomerModel.findById(id)
         if customer:
             customer.deleteFromDB()

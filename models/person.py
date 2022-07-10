@@ -8,10 +8,10 @@ class PersonModel(db.Model):
     firstName = db.Column(db.String(80))
     lastName = db.Column(db.String(80))
     dob = db.Column(db.String(80)) # TODO change datatype
-    type = db.Column(db.String(20))
+    person_type = db.Column(db.String(20))
 
     __mapper_args__ = {
-        "polymorphic_on": "type",
+        "polymorphic_on": "person_type",
         "polymorphic_identity": "person",
     }
 
