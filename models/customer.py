@@ -14,7 +14,6 @@ class CustomerModel(PersonModel):
         self.phoneNr = phoneNr
         self.email = email
 
-
     def json(self):
         return {"firstName": self.firstName, "lastName": self.lastName, "dob": self.dob, "phoneNr": self.phoneNr, "email":self.email}
 

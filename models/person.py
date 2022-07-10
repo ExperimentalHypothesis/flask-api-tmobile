@@ -1,7 +1,6 @@
 from db import db
 
 class PersonModel(db.Model):
-    """ Base data model for Customer."""
 
     __tablename__  = "persons"
 
