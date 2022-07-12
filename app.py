@@ -10,8 +10,9 @@ from resources.order import Order
 app = Flask(__name__)
 
 app.secret_key = "sadaddaf"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres@localhost:5432/postgres" # when running as python app.py
 
 api = Api(app)
 api.add_resource(Person, "/person", "/person/<int:id>", endpoint="person")
